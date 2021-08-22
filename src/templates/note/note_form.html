@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>create new note</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+<body>
+<!--note form-->
+<!--<form method="post">{% csrf_token %}-->
+<!--    {{ my_form.as_p }}-->
+<!--    <input type="submit" value="Save">-->
+<!--</form>-->
+
+<div class="container">
+    <h1>{% if not form.instance.pk %}Create New Note{% else %}update {{form.instance.title}}{% endif %}</h1>
+    <div class="container"><form  method="post">{% csrf_token %}
+      <div class="form">
+        <div class="col-md-6">
+            <div class="input-group col-md-6">
+                {{ form.author }}
+            </div>
+          <br><label>Title</label>
+          <input type="text" name="title" placeholder="Title" {% if form.instance.pk %} value="{{form.title.value}}"{%endif%} class="form-control">
+        </div>
+        <div class="form-group col-md-6">
+          <label>Description</label>
+          <textarea maxlength="100" placeholder="Text" name="text"  class="form-control">{% if form.instance.pk %}{{form.text.value}}{%endif%}</textarea>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Add</button>
+    </form>
+    </div>
+</div>
+<!--<form method="post">-->
+<!--    {% csrf_token %}-->
+<!--      <div class="row">-->
+<!--        <div class="col">-->
+<!--          {{form.title}}-->
+<!--        </div>-->
+<!--        <div class="col">-->
+<!--         {{form.text}}-->
+<!--        </div>-->
+<!--          <input type="submit" value="Save">-->
+<!--      </div>-->
+<!--</form>-->
+</body>
+</html>
