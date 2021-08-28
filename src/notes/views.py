@@ -11,6 +11,8 @@ def note_list(request):
         notes = notes.filter(Q(title_icontains=query) | Q(content_icontains=query))
     
     context = {
-        "notes": notes
+        "notes": notes,
+        "count": notes.count(),
     }
-    return render(request)
+    return render(request, 'notes/note_list.html', context=context)
+

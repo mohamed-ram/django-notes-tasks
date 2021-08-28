@@ -1,0 +1,22 @@
+
+.notes-container{
+  padding-top: 40px;
+  margin-bottom: 30px;
+}
+
+.notes-count{
+  margin-bottom: 30px;
+}
+
+hr{
+  margin: 0;
+}
+
+.spinner-wrapper{
+  height: calc(100vh - 50px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: auto;
+}

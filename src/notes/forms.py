@@ -4,6 +4,6 @@ from .models import Note
 class NoteForm(forms.ModelForm):
     class Meta:
         model = Note
-        fields = ['title', 'content', 'category']
+        fields = ['title', 'content', 'category', 'image']
         exclude = ['user']
 

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  Notes Home Page
+{% endblock %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'css/notes.css' %}">
+{% endblock %}
+
+{% block content %}
+  <div class="container notes-container">
+    <div class="d-flex notes-count">
+      <h1 class="flex-fill" id="main">All Notes ({{ count }})</h1>
+      <button id="add-note-btn" class="btn btn-success no-padding">add new</button>
+    </div>
+    <div id="notes" class="row">
+      <div id="spinner" class="spinner-wrapper">
+        <div  class="spinner-border" role="status"></div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block js %}
+  <script>
+    console.log("notes home page works")
+    const notes_container = document.getElementById("notes")
+    const spinner = document.getElementById("spinner")
+    // ajax call to get all notes.
+    $.ajax({
+      type: 'GET',
+      url: "api/note_list",
+      success: data => {
+        spinner.classList.add("visually-hidden")
+        data.forEach(el=> notes_container.innerHTML += `
+          <div class="col-md-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">${el.title}</h5>
+                <p class="card-text">${el.content}</p>
+                <a href="#" class="btn btn-primary">detail</a>
+              </div>
+            </div>
+          </div>
+        `)
+      }
+    })
+  </script>
+{% endblock %}

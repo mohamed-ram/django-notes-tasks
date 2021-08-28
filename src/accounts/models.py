@@ -1,5 +1,7 @@
-from django.db import models
+from django.contrib.auth import get_user_model
+from django.db.models.signals import post_save, pre_save
 
+from .receivers import post_save_profile_create
 from django.db import models
 from django.contrib.auth.models import (
     BaseUserManager, AbstractBaseUser
@@ -69,3 +71,8 @@ class UserAccount(AbstractBaseUser):
         "Is the user a member of staff?"
         # Simplest possible answer: All admins are staff
         return self.is_admin
+
+
+User = get_user_model()
+
+post_save.connect(sender=User, receiver=post_save_profile_create)
